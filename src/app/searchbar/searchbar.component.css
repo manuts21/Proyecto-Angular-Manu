@@ -1,0 +1,26 @@
+.searchbar-container {
+  width: 800px;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 27px;
+  height: 44px;
+  border: 1px solid /* #C3D4E940; */ black;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.searchbar-input{
+  border: 0;
+}
+
+.searchbar-input:focus{
+  outline: none;
+  border: 0;
+}
+
+.searchbar-close-icon, .searchbar-search-icon{
+  width: 24px;
+  height: 24px;
+}
