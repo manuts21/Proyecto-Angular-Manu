@@ -1,3 +1,60 @@
-@for(car of cars; track car.id){
-  {{car.name}}
-}
+<div
+  class="flex flex-wrap align-items-center justify-content-evenly"
+  style="margin: 2% 5%"
+>
+  @if (cars) { @for(car of cars; track car.id){
+  <p-card
+    [header]="car.name"
+    [subheader]="car.type"
+    class="p-shadow-8 p-m-6 p-rounded-10 p-cursor-pointer mb-5"
+    [style]="{ width: '360px', height: '388px', 'background-color': '#FFFFFF' }"
+  >
+    <div class="mt-46 relative" style="height: 130px">
+      <img
+        class="absolute p-bottom-0 p-left-0 p-mt-60"
+        src="{{ car.img }}"
+        alt="car-image"
+        style="
+          max-height: 100px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        "
+      />
+      <div
+        class="car-pic-gradient absolute bottom-0 left-0"
+        style="width: 100%; height: 40%"
+      ></div>
+    </div>
+
+    <div
+      class="flex flex-row align-items-center justify-content-evenly"
+      style="color: #90a3bf; font-size: 14px"
+    >
+      <span class="flex align-items-center gap-2">
+        <img src="../../assets/gas-station.svg" alt="" />
+        <span class="font-semibold">{{ car.gasolineLiter }}L</span>
+      </span>
+      <span class="flex align-items-center gap-2">
+        <img src="../../assets/car-wheel.svg" alt="" />
+        <span class="font-semibold">{{ car.kindOfTransition }}</span>
+      </span>
+      <span class="flex align-items-center gap-2">
+        <img src="../../assets/user.svg" alt="" />
+        <span class="font-semibold">{{ car.people }}People</span>
+      </span>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <div class="flex align-items-center justify-content-between">
+        <p style="font-size: 20px">
+          {{ car.pricePerDay }}€/
+          <span style="color: #90a3bf; font-size: 14px">day</span>
+        </p>
+        <p-button label="Rent Now"></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+
+  } }
+</div>

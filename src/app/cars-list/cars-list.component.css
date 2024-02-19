@@ -1,0 +1,8 @@
+:host {
+  ::ng-deep .p-button{
+      background-color: #3563E9;
+  }
+}
+.car-pic-gradient {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
+}

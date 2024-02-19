@@ -6,7 +6,7 @@
   align-items: center;
   border-radius: 27px;
   height: 44px;
-  border: 1px solid /* #C3D4E940; */ black;
+  border: 1px solid #C3D4E940; ;
   padding-left: 15px;
   padding-right: 15px;
 }

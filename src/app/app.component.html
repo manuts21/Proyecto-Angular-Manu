@@ -3,7 +3,7 @@
 
 
 <main class="main">
-<app-header></app-header>
+<app-header (search)="getCars($event)"></app-header>
 <app-cars-list [cars]="cars"></app-cars-list>
 </main>
 
