@@ -8,11 +8,12 @@
     [subheader]="car.type"
     class="p-shadow-8 p-m-6 p-rounded-10 p-cursor-pointer mb-5"
     [style]="{ width: '360px', height: '388px', 'background-color': '#FFFFFF' }"
+    (click)="seeDetails(car.id)"
   >
     <div class="mt-46 relative" style="height: 130px">
       <img
         class="absolute p-bottom-0 p-left-0 p-mt-60"
-        src="{{ car.img }}"
+        [src]="car.img"
         alt="car-image"
         style="
           max-height: 100px;

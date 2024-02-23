@@ -1,0 +1,67 @@
+@if(car){
+<div class="grid">
+  <p-card class="col-5" [header]="car.name">
+    <p class="m-0">
+      {{ car.description }}
+    </p>
+  </p-card>
+  <p-card class="col-7" [header]="car.name">
+    <p class="m-0">
+      {{ car.description }}
+    </p>
+  </p-card>
+</div>
+
+<div class="p-grid p-dir-col" style="width: 400px; max-width: 492px;">
+  <div style="height: 360px; border-radius: 10px;">
+    @if(!selectedImage){
+      <div class="p-relative" style="height: 360px; border-radius: 10px; background-image: url(../../assets/card-bg-dark-no-car.svg); background-size: cover;">
+        <div class="p-p-6" style="color: white; width: 420px;">
+          <p style="font-size: 32px;">
+            Sports car with the best design and acceleration
+          </p>
+          <p class="p-mt-4" style="font-size: 16px; width: 300px;">
+            Safety and comfort while driving a futuristic and elegant sports car
+          </p>
+        </div>
+        <img style="height: 160px;"
+          [src]="defaultImage"
+          alt="car-image"
+        />
+      </div>
+    } @else {
+      <img
+      style="object-fit: cover; height: 100%; border-radius: 10px;"
+      [src]="selectedImage"
+      alt="carrousel-image"
+    />
+    }
+  </div>
+
+  <div class="p-grid p-jc-between p-mt-3">
+    <div
+      class="p-relative" style="width: 128px; max-width: 148px; height: 104px; max-height: 124px; border-radius: 10px; background-image: url(../../assets/card-bg-dark-no-car.svg); background-size: cover;"
+      [ngClass]="{ 'p-border-2 p-p-2': !selectedImage }"
+      (click)="setSelectedImage('')"
+    >
+      <img
+        style="width: 148px;"
+        [src]="defaultImage"
+        alt="car-image"
+      />
+    </div>
+    <img
+      style="width: 128px; max-width: 148px; height: 104px; max-height: 124px; border-radius: 10px;"
+      [ngClass]="{ 'p-border-2 p-p-1': selectedImage === extraImage1 }"
+      [src]="extraImage1"
+      (click)="setSelectedImage(extraImage1!)"
+    />
+    <img
+      style="width: 128px; max-width: 148px; height: 104px; max-height: 124px; border-radius: 10px;"
+      [ngClass]="{ 'p-border-2 p-p-1': selectedImage === extraImage2 }"
+      [src]="extraImage2"
+      (click)="setSelectedImage(extraImage2!)"
+    />
+  </div>
+</div>
+}

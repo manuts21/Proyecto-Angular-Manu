@@ -2,9 +2,6 @@
   "/api": {
     "target": "http://dm-assignment-commonshare.koyeb.app",
     "secure": false,
-    "pathRewrite": {
-      "^/api": ""
-    },
     "changeOrigin": true
   }
 }
