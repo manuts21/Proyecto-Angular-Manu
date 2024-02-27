@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { CarsService } from '../services/cars-service/cars.service';
 
 
 
@@ -10,9 +11,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './searchbar.component.css'
 })
 export class SearchbarComponent {
-  @Output() search = new EventEmitter<string>();
+  constructor(private carsservice: CarsService) {
+
+   }
   searchEnter(event: Event){
     const input = event.target as HTMLInputElement;
-    this.search.emit(input.value);
+    this.carsservice.getCars(input.value, 1);
   }
 }

@@ -10,9 +10,5 @@ import { SearchbarComponent } from '../searchbar/searchbar.component';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-searchEventHeader(str: string){
-  console.log('searchEventHeader');
-  this.search.emit(str);
 }
-@Output() search = new EventEmitter<string>();
-}
+

@@ -7,7 +7,6 @@ import {
 import { CarsService } from '../services/cars-service/cars.service';
 import { Car } from '../types';
 import { Store } from '@ngrx/store';
-import { HeaderComponent } from '../header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { CarsListComponent } from '../cars-list/cars-list.component';
@@ -16,7 +15,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-cars-page',
   standalone: true,
-  imports: [HeaderComponent, HttpClientModule, CarsListComponent, ButtonModule],
+  imports: [HttpClientModule, CarsListComponent, ButtonModule],
   templateUrl: './cars-page.component.html',
   styleUrl: './cars-page.component.css',
 })
