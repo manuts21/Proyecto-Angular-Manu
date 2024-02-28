@@ -8,12 +8,14 @@ export interface State {
   cars: Car[];
   lastPage: boolean;
   popularCars: Car[];
+  lastSearch: string;
 }
 
 export const initialState: State = {
   cars: [],
   lastPage: false,
   popularCars: [],
+  lastSearch: '',
 };
 
 export const carsReducer = createReducer(
@@ -32,4 +34,8 @@ export const carsReducer = createReducer(
     ...state,
     popularCars: cars.data,
   })),
+  on(carsActions.setLastSearch, (state, search) => ({
+    ...state,
+    lastSearch: search.data,
+  }))
 );

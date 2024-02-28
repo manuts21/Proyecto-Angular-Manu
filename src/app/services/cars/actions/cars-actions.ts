@@ -6,5 +6,6 @@ export const carsActions = createActionGroup({
     getCars: props<{data:Car[], page: number, lastPage: number}>(),
     addCars: props<{data:Car[], page: number, lastPage: number}>(),
     getPopularCars: props<{data:Car[]}>(),
+    setLastSearch: props<{data:string}>(),
   }
 });

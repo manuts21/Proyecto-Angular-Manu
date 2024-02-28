@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   carsSelector,
   lastPageSelector,
+  lastSearchSelector,
   popularCarsSelector,
 } from '../services/cars/selectors/cars.selectors';
 import { CarsService } from '../services/cars-service/cars.service';
@@ -31,6 +32,9 @@ export class CarsPageComponent implements OnInit, OnDestroy {
   $lastPage = this.store.select(lastPageSelector);
   lastPage = false;
 
+  $lastSearch = this.store.select(lastSearchSelector);
+  lastSearch = '';
+
   subscriptions: Subscription = new Subscription();
 
   constructor(private carsService: CarsService, private store: Store) {
@@ -48,6 +52,12 @@ export class CarsPageComponent implements OnInit, OnDestroy {
       this.$lastPage.subscribe((value) => {
         console.log(value);
         this.lastPage = value;
+      })
+    );
+    this.subscriptions.add(
+      this.$lastSearch.subscribe((value) => {
+        console.log(value);
+        this.lastSearch = value;
       })
     );
   }

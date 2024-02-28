@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AllCars, Car, CarDetails } from '../../types';
 import { Store } from '@ngrx/store';
 import { carsActions } from '../cars/actions/cars-actions';
-import { carsSelector, popularCarsSelector } from '../cars/selectors/cars.selectors';
+import { carsSelector, lastSearchSelector, popularCarsSelector } from '../cars/selectors/cars.selectors';
 
 const URL_BASE = '/api';
 const URL_CARS = `${URL_BASE}/cars`;
@@ -15,9 +15,11 @@ const URL_CARS_POPULAR = `${URL_CARS}/popular`;
 export class CarsService {
   public cars: Car[] = [];
   public popularCars: Car[] = [];
+  public lastSearch: string = '';
 
   $cars = this.store.select(carsSelector);
   $popularCars = this.store.select(popularCarsSelector);
+  $lastSearch = this.store.select(lastSearchSelector);
 
   constructor(private store: Store) {
     this.$cars.subscribe((car) => {
@@ -25,6 +27,9 @@ export class CarsService {
     });
     this.$popularCars.subscribe((car) => {
       this.popularCars = car ? car : [];
+    });
+    this.$lastSearch.subscribe((lastSearch) => {
+      this.lastSearch = lastSearch;
     });
   }
   async getAllCars(text: string, page: number) {
@@ -37,6 +42,9 @@ export class CarsService {
   }
   async getCars(text: string, page: number) {
     const a = await this.getAllCars(text, page);
+    this.store.dispatch(
+      carsActions.setLastSearch({ data: text })
+    );
     this.store.dispatch(
       carsActions.getCars({ data: a.data, page, lastPage: a.meta.last_page })
     );

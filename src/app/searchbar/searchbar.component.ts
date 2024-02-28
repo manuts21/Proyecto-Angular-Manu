@@ -11,9 +11,8 @@ import { CarsService } from '../services/cars-service/cars.service';
   styleUrl: './searchbar.component.css'
 })
 export class SearchbarComponent {
-  constructor(private carsservice: CarsService) {
+  constructor(private carsservice: CarsService) {}
 
-   }
   searchEnter(event: Event){
     const input = event.target as HTMLInputElement;
     this.carsservice.getCars(input.value, 1);

@@ -4,12 +4,15 @@ import { Car, CarDetails } from '../types';
 import { CarsService } from '../services/cars-service/cars.service';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
-import { timeout } from 'rxjs';
+import { Subscription, timeout } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { carsSelector } from '../services/cars/selectors/cars.selectors';
+import { CarsListComponent } from '../cars-list/cars-list.component';
 
 @Component({
   selector: 'app-cardetails',
   standalone: true,
-  imports: [CommonModule, CardModule],
+  imports: [CommonModule, CardModule, CarsListComponent],
   templateUrl: './cardetails.component.html',
   styleUrl: './cardetails.component.css',
 })
@@ -20,8 +23,16 @@ export class CardetailsComponent implements OnInit {
   defaultImage?: string;
   extraImage1?: string;
   extraImage2?: string;
+  $cars = this.store.select(carsSelector);
+  cars: Car[] = [];
+  subscriptions: Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private carsService: CarsService) {
+  constructor(private route: ActivatedRoute, private carsService: CarsService, private store: Store) {
+    this.subscriptions.add(
+      this.$cars.subscribe(() => {
+        this.cars = this.carsService.cars;
+      })
+    );
     this.route.params.subscribe((params) => {
       this.carId = params['id'];
     });

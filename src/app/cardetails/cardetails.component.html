@@ -1,106 +1,106 @@
 @if(car){
-<div class="grid" style="margin: 2% 13%">
-  <div class="col-4">
-    <div style="height: 360px; border-radius: 10px">
-      @if(!selectedImage){
-      <div
-        class="relative"
-        style="
-          width: 100%;
-          height: 360px;
-          border-radius: 10px;
-          background-image: url(../../assets/card-bg-dark-no-car.svg);
-          background-size: cover;
-        "
-      >
-        <div class="p-2" style="color: white; width: 420px">
-          <p style="font-size: 32px">
-            Sports car with the best design and acceleration
-          </p>
-          <p class="mt-4" style="font-size: 16px; width: 300px">
-            Safety and comfort while driving a futuristic and elegant sports car
-          </p>
+  <div class="grid" style="margin: 2% 13%">
+    <div class="col-4">
+      <div style="height: 360px; border-radius: 10px">
+        @if(!selectedImage){
+        <div
+          class="relative"
+          style="
+            width: 100%;
+            height: 360px;
+            border-radius: 10px;
+            background-image: url(../../assets/card-bg-dark-no-car.svg);
+            background-size: cover;
+          "
+        >
+          <div class="p-2" style="color: white; width: 420px">
+            <p style="font-size: 32px">
+              Sports car with the best design and acceleration
+            </p>
+            <p class="mt-4" style="font-size: 16px; width: 300px">
+              Safety and comfort while driving a futuristic and elegant sports car
+            </p>
+          </div>
+          <img
+            style="
+              height: 130px;
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
+            "
+            [src]="defaultImage"
+            alt="car-image"
+          />
+        </div>
+        } @else {
+        <img
+          style="
+            width: 100%;
+            object-fit: cover;
+            height: 100%;
+            border-radius: 10px;
+            aspect-ratio: 1/1;
+          "
+          [src]="selectedImage"
+          alt="carrousel-image"
+        />
+        }
+      </div>
+
+      <div class="grid m-1 grid-cols-3 justify-content-between mt-3">
+        <div
+          class="p-relative"
+          style="
+            width: 30%;
+            max-width: 150px;
+            height: 150px;
+            max-height: 124px;
+            border-radius: 10px;
+            background-image: url(../../assets/card-bg-dark-no-car.svg);
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+          "
+          [ngClass]="{ 'border-2 border-blue-600': !selectedImage }"
+          (click)="setSelectedImage('')"
+        >
+          <img style="width: 100%;" [src]="defaultImage" alt="car-image" />
         </div>
         <img
           style="
-            height: 130px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 30%;
+            max-width: 150px;
+            height: 150px;
+            max-height: 124px;
+            border-radius: 10px;
           "
-          [src]="defaultImage"
-          alt="car-image"
+          [ngClass]="{ 'border-2 border-blue-600': selectedImage === extraImage1 }"
+          [src]="extraImage1"
+          (click)="setSelectedImage(extraImage1!)"
+        />
+        <img
+          style="
+            width: 30%;
+            max-width: 150px;
+            height: 150px;
+            max-height: 124px;
+            border-radius: 10px;
+
+          "
+          [ngClass]="{ 'border-2 border-blue-600': selectedImage === extraImage2 }"
+          [src]="extraImage2"
+          (click)="setSelectedImage(extraImage2!)"
         />
       </div>
-      } @else {
-      <img
-        style="
-          width: 100%;
-          object-fit: cover;
-          height: 100%;
-          border-radius: 10px;
-          aspect-ratio: 1/1;
-        "
-        [src]="selectedImage"
-        alt="carrousel-image"
-      />
-      }
     </div>
-
-    <div class="grid m-1 grid-cols-3 justify-content-between mt-3">
-      <div
-        class="p-relative"
-        style="
-          width: 30%;
-          max-width: 150px;
-          height: 150px;
-          max-height: 124px;
-          border-radius: 10px;
-          background-image: url(../../assets/card-bg-dark-no-car.svg);
-          background-size: cover;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          justify-content: flex-end;
-        "
-        [ngClass]="{ 'border-2 border-blue-600': !selectedImage }"
-        (click)="setSelectedImage('')"
-      >
-        <img style="width: 100%;" [src]="defaultImage" alt="car-image" />
-      </div>
-      <img
-        style="
-          width: 30%;
-          max-width: 150px;
-          height: 150px;
-          max-height: 124px;
-          border-radius: 10px;
-        "
-        [ngClass]="{ 'border-2 border-blue-600': selectedImage === extraImage1 }"
-        [src]="extraImage1"
-        (click)="setSelectedImage(extraImage1!)"
-      />
-      <img
-        style="
-          width: 30%;
-          max-width: 150px;
-          height: 150px;
-          max-height: 124px;
-          border-radius: 10px;
-
-        "
-        [ngClass]="{ 'border-2 border-blue-600': selectedImage === extraImage2 }"
-        [src]="extraImage2"
-        (click)="setSelectedImage(extraImage2!)"
-      />
-    </div>
+    <p-card class="col-8" [header]="car.name">
+      <p class="m-0">
+        {{ car.description }}
+      </p>
+    </p-card>
   </div>
-  <p-card class="col-8" [header]="car.name">
-    <p class="m-0">
-      {{ car.description }}
-    </p>
-  </p-card>
-</div>
+  <app-cars-list [cars]="cars"></app-cars-list>
 
-
-}
+  }
