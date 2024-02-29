@@ -5,7 +5,7 @@
   align-items: center;
   gap: 15px;
   background-color: #FFFFFF;
-
+  flex-wrap: wrap;
 }
 .header-logo {
   font-size: 32px;

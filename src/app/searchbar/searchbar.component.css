@@ -26,3 +26,10 @@
   width: 24px;
   height: 24px;
 }
+
+@media screen and (max-width: 768px) {
+  .searchbar-container {
+    width: 100%;
+  }
+
+}
