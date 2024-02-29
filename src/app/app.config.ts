@@ -1,4 +1,4 @@
-import { ApplicationConfig, isDevMode } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -8,7 +8,8 @@ import { provideEffects } from '@ngrx/effects';
 import { carsReducer } from './services/cars/reducers/cars.reducer';
 import { carsEffects } from './services/cars/effects/cars.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideStore({ cars: carsReducer }), provideEffects([carsEffects]), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })],
+  providers: [provideRouter(routes), provideClientHydration(), provideStore({ cars: carsReducer }), provideEffects([carsEffects]), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }), importProvidersFrom([BrowserAnimationsModule])],
 };

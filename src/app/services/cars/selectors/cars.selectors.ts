@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as carsState from '../reducers/cars.reducer';
-import exp from 'constants';
 export const selectCarsState = createFeatureSelector<carsState.State>(
   carsState.carsFeatureKey
 );
@@ -23,4 +22,8 @@ export const popularCarsSelector = createSelector(
 export const lastSearchSelector = createSelector(
   selectCarsState,
   (state) => (state.lastSearch)
+);
+export const reservationsSelector = createSelector(
+  selectCarsState,
+  (state) => (state.reservations)
 );

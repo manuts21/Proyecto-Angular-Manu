@@ -8,11 +8,12 @@ import { Subscription, timeout } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { carsSelector } from '../services/cars/selectors/cars.selectors';
 import { CarsListComponent } from '../cars-list/cars-list.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-cardetails',
   standalone: true,
-  imports: [CommonModule, CardModule, CarsListComponent],
+  imports: [CommonModule, CardModule, CarsListComponent,ButtonModule],
   templateUrl: './cardetails.component.html',
   styleUrl: './cardetails.component.css',
 })

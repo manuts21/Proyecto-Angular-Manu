@@ -9,6 +9,7 @@ export interface State {
   lastPage: boolean;
   popularCars: Car[];
   lastSearch: string;
+  reservations: any;
 }
 
 export const initialState: State = {
@@ -16,6 +17,7 @@ export const initialState: State = {
   lastPage: false,
   popularCars: [],
   lastSearch: '',
+  reservations: [],
 };
 
 export const carsReducer = createReducer(
@@ -37,5 +39,9 @@ export const carsReducer = createReducer(
   on(carsActions.setLastSearch, (state, search) => ({
     ...state,
     lastSearch: search.data,
+  })),
+  on(carsActions.reservations, (state, reservations) => ({
+    ...state,
+    reservations: state.reservations.concat(reservations.data),
   }))
 );

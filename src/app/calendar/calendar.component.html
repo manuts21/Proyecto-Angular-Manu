@@ -1,3 +1,13 @@
-<form [formGroup]="calendarform">
-  <p-calendar class="max-w-full" formControlName="date" [inline]="true" [showWeek]="true"></p-calendar>
-</form>
+<div class="w-full flex justify-content-center align-items-center flex-column">
+  <form [formGroup]="calendarform">
+    <p-calendar
+      class="max-w-full"
+      formControlName="date"
+      [inline]="true"
+      [showWeek]="true"
+    ></p-calendar>
+  </form>
+∏  <p-button class="pt-4" (click)="onSubmit()" [disabled]="!calendarform.valid"
+    >Submit</p-button
+  >
+</div>

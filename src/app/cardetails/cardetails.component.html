@@ -1,106 +1,148 @@
 @if(car){
-  <div class="grid" style="margin: 2% 13%">
-    <div class="col-4">
-      <div style="height: 360px; border-radius: 10px">
-        @if(!selectedImage){
-        <div
-          class="relative"
+<div class="grid" style="margin: 2% 13%">
+  <div class="md:col-4 sm:col-12 col-12">
+    <div style="height: 360px; border-radius: 10px">
+      @if(!selectedImage){
+      <div
+        class="relative"
+        style="
+          width: 100%;
+          height: 360px;
+          border-radius: 10px;
+          background-image: url(../../assets/card-bg-dark-no-car.svg);
+          background-size: cover;
+        "
+      >
+        <div class="p-2" style="color: white; width: 420px">
+          <p style="font-size: 32px">
+            Sports car with the best design and acceleration
+          </p>
+          <p class="mt-4" style="font-size: 16px; width: 300px">
+            Safety and comfort while driving a futuristic and elegant sports car
+          </p>
+        </div>
+        <img
           style="
-            width: 100%;
-            height: 360px;
-            border-radius: 10px;
-            background-image: url(../../assets/card-bg-dark-no-car.svg);
-            background-size: cover;
+            height: 130px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
           "
+          [src]="defaultImage"
+          alt="car-image"
+        />
+      </div>
+      } @else {
+      <img
+        style="
+          width: 100%;
+          object-fit: cover;
+          height: 100%;
+          border-radius: 10px;
+          aspect-ratio: 1/1;
+        "
+        [src]="selectedImage"
+        alt="carrousel-image"
+      />
+      }
+    </div>
+
+    <div class="grid m-1 grid-cols-3 justify-content-between mt-3">
+      <div
+        class="p-relative"
+        style="
+          width: 30%;
+          max-width: 150px;
+          height: 150px;
+          max-height: 124px;
+          border-radius: 10px;
+          background-image: url(../../assets/card-bg-dark-no-car.svg);
+          background-size: cover;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: flex-end;
+        "
+        [ngClass]="{ 'border-2 border-blue-600': !selectedImage }"
+        (click)="setSelectedImage('')"
+      >
+        <img style="width: 100%" [src]="defaultImage" alt="car-image" />
+      </div>
+      <img
+        style="
+          width: 30%;
+          max-width: 150px;
+          height: 150px;
+          max-height: 124px;
+          border-radius: 10px;
+        "
+        [ngClass]="{
+          'border-2 border-blue-600': selectedImage === extraImage1
+        }"
+        [src]="extraImage1"
+        (click)="setSelectedImage(extraImage1!)"
+      />
+      <img
+        style="
+          width: 30%;
+          max-width: 150px;
+          height: 150px;
+          max-height: 124px;
+          border-radius: 10px;
+        "
+        [ngClass]="{
+          'border-2 border-blue-600': selectedImage === extraImage2
+        }"
+        [src]="extraImage2"
+        (click)="setSelectedImage(extraImage2!)"
+      />
+    </div>
+  </div>
+  <p-card class="h-auto col-8 details" [style]="{ height: '500px' }">
+    <ng-template pTemplate="content">
+      <div>
+        <div
+          class="mt-9 text-3xl line-height-3 text-gray-700 text-overflow-ellipsis font-bold"
         >
-          <div class="p-2" style="color: white; width: 420px">
-            <p style="font-size: 32px">
-              Sports car with the best design and acceleration
-            </p>
-            <p class="mt-4" style="font-size: 16px; width: 300px">
-              Safety and comfort while driving a futuristic and elegant sports car
+          {{ car.name }}
+        </div>
+        <div
+          class="mt-4 text-xl line-height-3 text-gray-700 text-overflow-ellipsis"
+        >
+          {{ car.description }}
+        </div>
+        <div class="mt-9 flex flex-wrap gap-6 justify-content-start text-xl">
+          <div class="flex gap-2 justify-content-between">
+            <p class="text-gray-400">Type Car</p>
+            <p class="text-gray-700 font-semibold">{{ car.type }}</p>
+          </div>
+          <div class="flex gap-2 justify-between">
+            <p class="text-gray-400">Capacity</p>
+            <p class="text-gray-700 font-semibold">{{ car.people }} People</p>
+          </div>
+          <div class="flex gap-2 justify-between">
+            <p class="text-gray-400">Gasoline</p>
+            <p class="text-gray-700 font-semibold">{{ car.gasolineLiter }} L</p>
+          </div>
+          <div class="flex gap-2 justify-between">
+            <p class="text-gray-400">Transmission</p>
+            <p class="text-gray-700 font-semibold">
+              {{ car.kindOfTransition }}
             </p>
           </div>
-          <img
-            style="
-              height: 130px;
-              position: absolute;
-              left: 50%;
-              transform: translateX(-50%);
-            "
-            [src]="defaultImage"
-            alt="car-image"
-          />
         </div>
-        } @else {
-        <img
-          style="
-            width: 100%;
-            object-fit: cover;
-            height: 100%;
-            border-radius: 10px;
-            aspect-ratio: 1/1;
-          "
-          [src]="selectedImage"
-          alt="carrousel-image"
-        />
-        }
       </div>
 
-      <div class="grid m-1 grid-cols-3 justify-content-between mt-3">
-        <div
-          class="p-relative"
-          style="
-            width: 30%;
-            max-width: 150px;
-            height: 150px;
-            max-height: 124px;
-            border-radius: 10px;
-            background-image: url(../../assets/card-bg-dark-no-car.svg);
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: flex-end;
-          "
-          [ngClass]="{ 'border-2 border-blue-600': !selectedImage }"
-          (click)="setSelectedImage('')"
-        >
-          <img style="width: 100%;" [src]="defaultImage" alt="car-image" />
+      <div class="p-2 w-full flex justify-content-between align-items-center">
+        <div>
+          <span class="text-xl font-bold">${{ car.pricePerDay }}/</span
+          ><span class="text-sm font-bold text-gray-400"> day</span>
         </div>
-        <img
-          style="
-            width: 30%;
-            max-width: 150px;
-            height: 150px;
-            max-height: 124px;
-            border-radius: 10px;
-          "
-          [ngClass]="{ 'border-2 border-blue-600': selectedImage === extraImage1 }"
-          [src]="extraImage1"
-          (click)="setSelectedImage(extraImage1!)"
-        />
-        <img
-          style="
-            width: 30%;
-            max-width: 150px;
-            height: 150px;
-            max-height: 124px;
-            border-radius: 10px;
-
-          "
-          [ngClass]="{ 'border-2 border-blue-600': selectedImage === extraImage2 }"
-          [src]="extraImage2"
-          (click)="setSelectedImage(extraImage2!)"
-        />
+        <p-button>Rent Now</p-button>
       </div>
-    </div>
-    <p-card class="col-8" [header]="car.name">
-      <p class="m-0">
-        {{ car.description }}
-      </p>
-    </p-card>
-  </div>
-  <app-cars-list [cars]="cars"></app-cars-list>
+    </ng-template>
+  </p-card>
+</div>
+<app-cars-list [cars]="cars"></app-cars-list>
 
-  }
+}
